@@ -5,7 +5,7 @@ Prototype d’interface web légère pour Tasmota. La page `/web` utilise un pet
 ## Architecture actuelle
 
 - `autoexec.be` enregistre la route `http://<ip_tasmota>/web` et ne sert que la structure HTML minimale.
-- `assets/web-app.js`, publié sur GitHub Pages, construit le contenu HTML de la page. Pour l’instant, il affiche « Hello zuzu ».
+- `assets/web-app.js`, publié sur GitHub Pages, construit le contenu HTML de la page. Il affiche « Hello zuzu » et une horloge locale au format `dd/mm/yy.hhmmss`, actualisée chaque seconde.
 - `assets/web-app.css`, également publié sur GitHub Pages, centre et met en forme le texte.
 - La page reste sous l’origine HTTP du Tasmota ; le JavaScript/CSS distant ne remplace pas son origine. Les futurs appels à l’API Tasmota pourront donc être faits vers cette même origine, sans CORS. Aucun appel API n’est implémenté pour le moment.
 
