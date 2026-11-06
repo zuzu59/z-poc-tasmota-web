@@ -1,0 +1,21 @@
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+}
+
+#app h1 {
+  margin: 0;
+  padding: 1rem;
+  font-size: clamp(3rem, 12vw, 8rem);
+  font-weight: 700;
+  text-align: center;
+}
