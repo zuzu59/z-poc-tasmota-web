@@ -12,6 +12,6 @@
   pageVersion.id = "page-version";
   pageVersion.setAttribute("aria-label", "Date et heure de génération de cette version");
   pageVersion.dateTime = "{{ site.time | date_to_xmlschema }}";
-  pageVersion.textContent = "{{ site.time | date: '%d/%m/%y.%H%M%S' }}";
+  pageVersion.textContent = "{{ site.time | date: '%d/%m/%y-%H.%M.%S' }}";
   document.body.append(pageVersion);
 })();
