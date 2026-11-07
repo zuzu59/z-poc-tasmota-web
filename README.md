@@ -5,9 +5,9 @@ Prototype d’interface web légère pour Tasmota. La page `/web` utilise un pet
 ## Architecture actuelle
 
 - `autoexec.be` enregistre la route `http://<ip_tasmota>/web` et ne sert que la structure HTML minimale.
-- `assets/web-app.js`, publié sur GitHub Pages, construit le contenu HTML de la page. Il affiche « Hello zuzu » et l’horodatage de génération GitHub Pages au format `dd/mm/yy-hh.mm.ss`. Cet horodatage reste fixe pour cette version ; un script servi depuis le cache conservera donc l’ancien horodatage.
-- `assets/web-app.css`, également publié sur GitHub Pages, centre et met en forme le texte.
-- La page reste sous l’origine HTTP du Tasmota ; le JavaScript/CSS distant ne remplace pas son origine. Les futurs appels à l’API Tasmota pourront donc être faits vers cette même origine, sans CORS. Aucun appel API n’est implémenté pour le moment.
+- `assets/web-app.js`, publié sur GitHub Pages, construit la page et lit les trois valeurs HTU21D (`Temperature`, `Humidity`, `DewPoint`) via `GET /cm?cmnd=Status%2010`, toutes les 2 secondes. L’horodatage de génération GitHub Pages au format `dd/mm/yy-hh.mm.ss` reste fixe pour cette version ; un script servi depuis le cache conservera donc l’ancien horodatage.
+- `assets/web-app.css`, également publié sur GitHub Pages, met en forme le titre et les trois mesures.
+- La page reste sous l’origine HTTP du Tasmota ; le JavaScript/CSS distant ne remplace pas son origine. Les appels à l’API Tasmota se font donc vers cette même origine, sans CORS. Le navigateur doit pouvoir joindre le Tasmota et le firmware doit autoriser l’API HTTP.
 
 Les ressources distantes sont des scripts classiques et une feuille de style, pas des modules JavaScript : cela permet leur chargement sans CORS et laisse le document sous l’origine du Tasmota.
 
@@ -29,4 +29,4 @@ Après la mise en place initiale, les changements de contenu, de JavaScript ou d
 
 ## Validation
 
-Le device de test est un ESP32-C3 sous Tasmota `16.0.0.2`. La version précédente de la page a été testée dans Chromium/Playwright sur ce device. La nouvelle architecture doit être vérifiée après publication des fichiers GitHub Pages et mise à jour de `autoexec.be` sur le device.
+Le device de test est un ESP32-C3 sous Tasmota `16.0.0.2`. La page et les mesures HTU21D doivent être testées dans Chromium/Playwright sur ce device après publication des fichiers GitHub Pages.
